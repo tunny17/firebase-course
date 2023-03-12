@@ -1,4 +1,6 @@
 import { initializeApp } from "firebase/app";
+// this function sets up authentication inside the project
+import { getAuth } from 'firebase/auth'
 
 const firebaseConfig = {
   apiKey: "AIzaSyALbIRFm3UfMf4Z5hjSe1AfBgbhv78PbeI",
@@ -12,3 +14,4 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+export const auth = getAuth(app);
