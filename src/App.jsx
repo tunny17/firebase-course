@@ -1,10 +1,10 @@
 import './App.css';
 import React, { useEffect, useState } from 'react';
 import { Auth } from './components/Auth';
-import { db } from './config/firebase';
+import { db, auth } from './config/firebase';
 // this function is used to get a bunch of data collections from the database
 import { getDocs, collection, addDoc, deleteDoc, updateDoc, doc } from 'firebase/firestore';
-import { async } from '@firebase/util';
+
 
 const App = () => {
 
@@ -60,7 +60,9 @@ const App = () => {
       await addDoc(moviesCollectionRef, { 
         title: newMovieTitle, 
         releaseDate: newReleaseDate, 
-        recievedAnOscar: isNewMovieOscar 
+        recievedAnOscar: isNewMovieOscar,
+        // added a userId property to get the id to be able to check for auth
+        userId: auth?.currentUser?.uid,
       });
 
       getMovieList();
