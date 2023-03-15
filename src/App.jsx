@@ -51,7 +51,7 @@ const App = () => {
         id: doc.id,
       }));
       setMovieList(filteredData);
-      console.log(filteredData);
+      // console.log(filteredData);
     } catch (err) {
       console.error(err);
     }
@@ -120,15 +120,6 @@ const App = () => {
       </div>
 
       <div>
-        <input 
-          type="file" 
-          onChange={(e) => setFileUpload(e.target.files[0])} 
-        />
-        <button onClick={uploadFile}> Upload File</button>
-      </div>
-
-
-      <div>
         {movieList.map((movie) => (
           <div>
             <h1 style={{ color: movie.recievedAnOscar ? 'green' : 'red' }}>{movie.title}</h1>
@@ -144,6 +135,15 @@ const App = () => {
           </div>
         ))}
       </div>
+
+      <div>
+        <input 
+          type="file" 
+          onChange={(e) => setFileUpload(e.target.files[0])} 
+        />
+        <button onClick={uploadFile}> Upload File</button>
+      </div>
+
     </div>
   )
 }
