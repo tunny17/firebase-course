@@ -1,13 +1,12 @@
 import './App.css';
 import React, { useEffect, useState } from 'react';
 import { Auth } from './components/Auth';
-import { db, auth } from './config/firebase';
+import { db, auth, storage } from './config/firebase';
 // this function is used to get a bunch of data collections from the database
 import { getDocs, collection, addDoc, deleteDoc, updateDoc, doc } from 'firebase/firestore';
 
 
 const App = () => {
-
   const [movieList, setMovieList] = useState([]);
 
   // new movie states
@@ -20,6 +19,13 @@ const App = () => {
 
   // reference of the data
   const moviesCollectionRef = collection(db, 'movies');
+
+  // state for file upload (storage)
+  const [fileUpload, setFileUpload] = useState(null)
+
+  
+
+
 
   // deletes movies
   const deleteMovie = async (id) => {
@@ -48,6 +54,13 @@ const App = () => {
       console.error(err);
     }
   }
+
+
+  // uploads file
+  const uploadFile = () => {
+    
+  }
+
 
   // useEffect to render the data(movie list) immediately the page loads up
   useEffect(() => {
@@ -94,6 +107,14 @@ const App = () => {
         />
         <label>Received an Oscar</label>
         <button  onClick={onSubmitMovie}>Submit Movie</button>
+      </div>
+
+      <div>
+        <input 
+          type="file" 
+          onChange={(e) => setFileUpload(e.target.files[0])} 
+        />
+        <button onClick={uploadFile}> Upload File</button>
       </div>
 
 
